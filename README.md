@@ -1,4 +1,4 @@
-# AYUR Prakriti Assessment Portal (CCRAS SOP Compliant)
+# Prakriti Assessment Portal (CCRAS SOP Compliant)
 
 An interactive, premium web application for Prakriti classification based on the official **Manual of SOPs for Prakriti Assessment** by the **Central Council for Research in Ayurvedic Sciences (CCRAS)**, Ministry of Ayush, Government of India.
 
