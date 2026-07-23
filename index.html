@@ -1,0 +1,1314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prakriti Assessment Scale (CCRAS SOP Compliant)</title>
+    <meta name="description" content="Standardized Prakriti assessment and classification based on the Manual of SOPs by CCRAS, Ministry of Ayush, Government of India.">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Logo and Header -->
+        <header>
+            <div class="logo-container">
+                <div class="logo-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM13 17H11V15H13V17ZM13 13H11V7H13V13Z" fill="#15803d"/>
+                    </svg>
+                </div>
+                <div class="logo-text">
+                    <h1>Prakriti Assessment Scale</h1>
+                    <p>CCRAS Standardized Assessment Scale</p>
+                </div>
+            </div>
+            <div class="header-badge">
+                <span class="badge badge-primary">SOP COMPLIANT</span>
+            </div>
+        </header>
+
+        <!-- Stepper Progress Bar -->
+        <div class="stepper-container" id="stepper-container" style="display: none;">
+            <div class="progress-bar-bg"></div>
+            <div class="progress-bar-fill" id="progress-bar-fill"></div>
+            <div class="steps">
+                <div class="step-node active" data-step="1">1<span class="step-label">Details</span></div>
+                <div class="step-node" data-step="2">2<span class="step-label">Physical</span></div>
+                <div class="step-node" data-step="3">3<span class="step-label">Physiological</span></div>
+                <div class="step-node" data-step="4">4<span class="step-label">Cognitive</span></div>
+                <div class="step-node" data-step="5">5<span class="step-label">Behavioral</span></div>
+                <div class="step-node" data-step="6">6<span class="step-label">Diagnosis</span></div>
+            </div>
+        </div>
+
+        <!-- View 1: Welcome Hero -->
+        <div id="welcome-view" class="view-section active">
+            <div class="welcome-hero">
+                <span class="badge badge-secondary">Official CCRAS SOP Standard</span>
+                <h2>Prakriti Assessment Scale</h2>
+                <p>Welcome to the standardized digital Prakriti classification system. Based strictly on the Standard Operating Procedures (SOPs) developed by the Central Council for Research in Ayurvedic Sciences (CCRAS), Ministry of Ayush, Government of India.</p>
+                
+                <button class="btn btn-primary" id="btn-start-app">
+                    Begin Assessment
+                </button>
+            </div>
+
+        </div>
+
+        <!-- View 2: Consent Form -->
+        <div id="consent-view" class="view-section">
+            <div class="card">
+                <div class="card-title-group">
+                    <h2 class="card-title">Participant Information & Consent</h2>
+                    <p class="card-subtitle">Annexure - II: Official Consent Cum Information Sheet</p>
+                </div>
+                
+                <div class="consent-content">
+                    <h4>Dear Participant,</h4>
+                    <p>You are being asked to undergo an assessment of Prakriti (body constitution). During this examination, you will be asked a battery of questions related to your personal habits, efficiency, likings, and dislikings.</p>
+                    <br>
+                    <p>You will also be examined for your physical characteristics (hair, skin, eyes, forehead, voice, body morphology, and gait). The findings will help determine your metabolic constitution and provide a lifestyle and dietary guideline befitting you.</p>
+                    <br>
+                    <p><strong>Confidentiality:</strong> Your details will be kept confidential and processed strictly for assessment. By checking the box below, you signify that in full consciousness and senses, you give your consent for the Prakriti assessment.</p>
+                </div>
+
+                <div class="form-group">
+                    <label for="participant-name">Full Name of Participant</label>
+                    <input type="text" id="participant-name" placeholder="Enter your name" required>
+                </div>
+
+                <label class="consent-checkbox">
+                    <input type="checkbox" id="consent-check">
+                    <span>I have read the information sheet, understand the details of the assessment, and consent to participate.</span>
+                </label>
+
+                <div class="button-row">
+                    <button class="btn btn-secondary" id="btn-consent-back">Back</button>
+                    <button class="btn btn-primary" id="btn-consent-next" disabled>Proceed to Details</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- View 3: Step 1 (General Info / BMI / Angulapramana) -->
+        <div id="step-general-view" class="view-section">
+            <div class="card">
+                <div class="card-title-group">
+                    <h2 class="card-title">General Measurements & Exclusions</h2>
+                    <p class="card-subtitle">Physical Built & Angulapramana calculations</p>
+                </div>
+
+                <div class="form-grid-3">
+                    <div class="form-group">
+                        <label for="input-age">Age (Years)</label>
+                        <input type="number" id="input-age" min="18" max="100" value="25" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="input-gender">Gender</label>
+                        <select id="input-gender">
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="input-palm">Palm Breadth (cm)</label>
+                        <input type="number" id="input-palm" step="0.1" value="7.5" min="4" max="12" required>
+                        <span style="font-size:0.7rem; color:var(--text-secondary);">4-finger width excluding thumb</span>
+                    </div>
+                </div>
+
+                <div class="form-grid-3">
+                    <div class="form-group">
+                        <label for="input-weight">Weight (kg)</label>
+                        <input type="number" id="input-weight" step="0.1" value="65" min="30" max="200" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="input-height">Actual Height (cm)</label>
+                        <input type="number" id="input-height" step="0.1" value="165" min="100" max="250" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="input-appearance-same">Appearance Same (10 yrs)?</label>
+                        <select id="input-appearance-same">
+                            <option value="yes">Yes (Appearance Stable)</option>
+                            <option value="no">No (Changed recently)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Hidden block if appearance changed (confounder weight replacement) -->
+                <div class="form-group" id="confounder-weight-box" style="display:none; background-color:rgba(180, 83, 9, 0.05); padding:16px; border-radius:var(--radius-sm); border:1px solid rgba(180, 83, 9, 0.15); margin-top:-10px; margin-bottom:20px;">
+                    <label for="input-healthy-weight" style="color:var(--secondary);">Provide Previous Healthy Weight (kg)</label>
+                    <p style="font-size:0.75rem; color:var(--text-secondary); margin-bottom:8px;">Since your weight/appearance has changed due to illness or other factors, please input your weight during healthy conditions for accurate classification.</p>
+                    <input type="number" id="input-healthy-weight" step="0.1" value="65" min="30" max="200">
+                </div>
+
+                <!-- Live calculation outputs -->
+                <div class="live-calc-box">
+                    <div class="live-calc-title">Ayurvedic Anthropometrics & Body built</div>
+                    
+                    <div class="question-image-box" style="margin-bottom:12px;">
+                        <img src="images/page_16_img_1.png" alt="Vernier Caliper Palm Breadth Measurement">
+                        <img src="images/page_16_img_2.png" alt="Angula Height Standard Diagram">
+                    </div>
+
+                    <div class="live-calc-row">
+                        <span>Body Mass Index (BMI):</span>
+                        <span class="live-value" id="calc-bmi">23.9 (Normal)</span>
+                    </div>
+                    <div class="live-calc-row">
+                        <span>Prakriti Built Classification:</span>
+                        <span class="live-value" id="calc-built-class">None (0 mark)</span>
+                    </div>
+                    <div class="live-calc-row">
+                        <span>Angula Standard Height (84 Angulas):</span>
+                        <span class="live-value" id="calc-std-height">157.5 cm</span>
+                    </div>
+                    <div class="live-calc-row">
+                        <span>Angula Height Range:</span>
+                        <span class="live-value" id="calc-std-range">150.0 cm (Short) - 165.0 cm (Tall)</span>
+                    </div>
+                    <div class="live-calc-row">
+                        <span>Prakriti Height Classification:</span>
+                        <span class="live-value" id="calc-height-class">Medium (0 mark)</span>
+                    </div>
+                </div>
+
+                <div class="button-row">
+                    <button class="btn btn-secondary" id="btn-step-gen-back">Back</button>
+                    <button class="btn btn-primary" id="btn-step-gen-next">Next: Physical Traits</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- View 4: Step 2 (Physical Traits) -->
+        <div id="step-physical-view" class="view-section">
+            <div class="card">
+                <div class="card-title-group">
+                    <h2 class="card-title">Physical & Morphological Traits</h2>
+                    <p class="card-subtitle">Anatomical predictors (18 Vata, 15 Pitta, 14 Kapha)</p>
+                </div>
+
+                <div class="questions-stack">
+                    
+                    <!-- Section: Appearance & Forehead -->
+                    <div class="trait-section-header">Morphology & Appearance</div>
+                    
+                    <div class="question-card" data-predictor="prominent-tendons">
+                        <div class="question-text">1. Bahu Kandara Sira Pratana (Prominent Tendons & Veins)</div>
+                        <div class="question-description">
+                            <span>Observe exposed parts (forearms, hands, shins) for highly visible veins and prominent tendons.</span>
+                            <span class="question-ref">Ref: Charaka Samhita Vimana Sthana 8/98. Confounder: aging, varicose veins.</span>
+                        </div>
+                        <div class="question-image-box">
+                            <img src="images/page_17_img_1.png" alt="Veins Example">
+                            <img src="images/page_17_img_2.png" alt="Veins Example 2">
+                            <img src="images/page_17_img_3.png" alt="Tendons Example">
+                        </div>
+                        <div class="options-grid">
+                            <button class="option-btn" data-val="yes"><span class="option-circle"></span>Yes (Prominent)</button>
+                            <button class="option-btn" data-val="no"><span class="option-circle"></span>No / Normal</button>
+                        </div>
+                    </div>
+
+                    <div class="question-card" data-predictor="sukumara-gatra">
+                        <div class="question-text">2. Sukumara Gatra (Delicate Body Sensitivity)</div>
+                        <div class="question-description">
+                            <span>Determine if the participant has delicate appearance and/or extreme sensitivity to hot spicy foods and summer.</span>
+                            <span class="question-ref">Ref: Charaka Samhita Vimana Sthana 8/97, HT Sharira 3/98.</span>
+                        </div>
+                        <div class="options-grid">
+                            <button class="option-btn" data-val="pitta"><span class="option-circle"></span>Sensitive to excessive heat / summer / hot & spicy food</button>
+                            <button class="option-btn" data-val="kapha"><span class="option-circle"></span>Has highly delicate, soft appearance of the body</button>
+                            <button class="option-btn" data-val="both"><span class="option-circle"></span>Both apply</button>
+                            <button class="option-btn" data-val="none"><span class="option-circle"></span>None of the above</button>
+                        </div>
+                    </div>
+
+                    <div class="question-card" data-predictor="broad-forehead">
+                        <div class="question-text">3. Maha-Lalata (Broad Forehead)</div>
+                        <div class="question-description">
+                            <span>Forehead vertical height (eyebrow line to natural hair line) is broader than 4 fingers of the participant.</span>
+                            <span class="question-ref">Ref: Ashtanga Hridaya Sharira Sthana 3/97. Confounder: baldness.</span>
+                        </div>
+                        <div class="options-grid">
+                            <button class="option-btn" data-val="yes"><span class="option-circle"></span>Yes (> 4 Angulas)</button>
+                            <button class="option-btn" data-val="no"><span class="option-circle"></span>No (≤ 4 Angulas)</button>
+                        </div>
+                    </div>
+
+                    <!-- Section: Skin -->
+                    <div class="trait-section-header">Skin Characteristics</div>
+
+                    <div class="question-card" data-predictor="skin-color">
+                        <div class="question-text">4. Twak Varna (Skin Complexion)</div>
+                        <div class="question-description">
+                            <span>Examine skin in natural light. Check covered areas (like inner arm) if exposed areas are tanned.</span>
+                            <span class="question-ref">Ref: Charaka Vimana 8/97, Sushruta Sharira 4/68. Excludes: jaundice, anemia.</span>
+                        </div>
+                        <div class="question-image-box">
+                            <img src="images/page_19_img_1.png" alt="Skin Complexion SOP reference chart">
+                        </div>
+                        <div class="visual-choices-grid">
+                            <div class="visual-choice-card" data-val="vata">
+                                <div class="color-preview-circle color-preview-dhusara"></div>
+                                <div class="visual-choice-label">Dhusara / Krishna</div>
+                                <div class="visual-choice-sublabel">Dusky or Dark</div>
+                            </div>
+                            <div class="visual-choice-card" data-val="pitta">
+                                <div class="color-preview-circle color-preview-gaurpitanga"></div>
+                                <div class="visual-choice-label">Gaura Pitanga</div>
+                                <div class="visual-choice-sublabel">Fair with Yellowish tinge</div>
+                            </div>
+                            <div class="visual-choice-card" data-val="kapha">
+                                <div class="color-preview-circle color-preview-gaura"></div>
+                                <div class="visual-choice-label">Gaura Gatra</div>
+                                <div class="visual-choice-sublabel">Milky White / Fair Gold</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="question-card" data-predictor="skin-texture">
+                        <div class="question-text">5. Twak Texture (Dryness & Smoothness)</div>
+                        <div class="question-description">
+                            <span>Evaluate the natural texture of skin, checking for cracking, dryness, or smooth unctuous clear skin.</span>
+                            <span class="question-ref">Ref: Charaka Samhita Vimana Sthana 8/96.</span>
+                        </div>
+                        <div class="options-grid">
+                            <button class="option-btn" data-val="vata"><span class="option-circle"></span>Rukshanga/Sphutitanga (Dry/Cracking other than palms/soles)</button>
+                            <button class="option-btn" data-val="kapha"><span class="option-circle"></span>Prasanna Snigdhanga (Smooth, unctuous skin without dryness)</button>
+                            <button class="option-btn" data-val="none"><span class="option-circle"></span>Normal / Neither</button>
+                        </div>
+                    </div>
+
+                    <div class="question-card" data-predictor="skin-moles">
+                        <div class="question-text">6. Prabhuta Tila-Vyanga-Pidaka-Piplu (Moles, Pimples & Freckles)</div>
+                        <div class="question-description">
+                            <span>Observe face/neck/arms. Positive if 5-6+ moles present, or there is frequent tendency to develop them.</span>
+                            <span class="question-ref">Ref: Charaka Samhita Vimana Sthana 8/97.</span>
+                        </div>
+                        <div class="question-image-box">
+                            <img src="images/page_20_img_1.png" alt="Moles example">
+                            <img src="images/page_20_img_2.png" alt="Freckles example">
+                            <img src="images/page_20_img_3.png" alt="Pimples example">
+                        </div>
+                        <div class="options-grid">
+                            <button class="option-btn" data-val="yes"><span class="option-circle"></span>Yes (Profuse moles/pimples/freckles)</button>
+                            <button class="option-btn" data-val="no"><span class="option-circle"></span>No / Rare</button>
+                        </div>
+                    </div>
+
+                    <div class="question-card" data-predictor="skin-wrinkles">
+                        <div class="question-text">7. Kshipravali / Shighravali (Early Wrinkling)</div>
+                        <div class="question-description">
+                            <span>Early appearance of wrinkles around eyes (crow's feet) before the age of 40.</span>
+                            <span class="question-ref">Ref: Charaka Vimana 8/97, AM Sharira Sthana 8/9.</span>
+                        </div>
+                        <div class="question-image-box">
+                            <img src="images/page_21_img_1.png" alt="Crow's feet reference">
+                            <img src="images/page_21_img_2.png" alt="Crow's feet reference 2">
+                            <img src="images/page_21_img_3.png" alt="Wrinkles example">
+                        </div>
+                        <div class="options-grid">
+                            <button class="option-btn" data-val="yes"><span class="option-circle"></span>Yes (Wrinkles appeared early / before 40s)</button>
+                            <button class="option-btn" data-val="no"><span class="option-circle"></span>No (Wrinkles absent or appeared late)</button>
+                        </div>
+                    </div>
+
+                    <div class="question-card" data-predictor="skin-temp">
+                        <div class="question-text">8. Ushmanga / Alpa Santapa (Feel on Touch)</div>
+                        <div class="question-description">
+                            <span>Feel temperature of the dorsal surface of participant's hand. Suffer from frequent mouth ulcers (>2-3 times/year)?</span>
+                            <span class="question-ref">Ref: AH 3/90, Charaka Vimana 8/97. Note: Ushmanga & Ushnamukha = max 1 mark.</span>
+                        </div>
+                        <div class="options-grid">
+                            <button class="option-btn" data-val="pitta"><span class="option-circle"></span>Warmer touch (Ushmanga) OR Frequent mouth ulcers (Ushnamukha)</button>
+                            <button class="option-btn" data-val="kapha"><span class="option-circle"></span>Colder touch (Alpasantapa - lower side of normalcy)</button>
+                            <button class="option-btn" data-val="none"><span class="option-circle"></span>Normal touch / temperature</button>
+                        </div>
+                    </div>
+
+                    <!-- Section: Joints & Muscles -->
+                    <div class="trait-section-header">Joints & Muscles</div>
+
+                    <div class="question-card" data-predictor="joint-movement">
+                        <div class="question-text">9. Anavasthita Sandhi (Undue Movement of Body Parts)</div>
+                        <div class="question-description">
+                            <span>Observation of frequent, involuntary movements of joints, jaw, eyebrows, lips, eyes, tongue, head or hands.</span>
+                            <span class="question-ref">Ref: Charaka Samhita Vimana Sthana 8/98. Confounder: arthritis, hypermobility.</span>
+                        </div>
+                        <div class="options-grid">
+                            <button class="option-btn" data-val="yes"><span class="option-circle"></span>Yes (Undue movement observed)</button>
+                            <button class="option-btn" data-val="no"><span class="option-circle"></span>No / Steady</button>
+                        </div>
+                    </div>
+
+                    <div class="question-card" data-predictor="joint-sound">
+                        <div class="question-text">10. Sashabda Sandhigami (Sound on Movement)</div>
+                        <div class="question-description">
+                            <span>Does the participant experience cracking sounds in knee, ankle, shoulder or toe joints during normal movements?</span>
+                            <span class="question-ref">Ref: Charaka Samhita Vimana Sthana 8/98. Exclude: active joint injury or arthritis.</span>
+                        </div>
+                        <div class="options-grid">
+                            <button class="option-btn" data-val="yes"><span class="option-circle"></span>Yes (Frequent cracking sound)</button>
+                            <button class="option-btn" data-val="no"><span class="option-circle"></span>No / Rare</button>
+                        </div>
+                    </div>
+
+                    <div class="question-card" data-predictor="muscle-laxity">
+                        <div class="question-text">11. Shithila Mridu Mamsa (Lax Muscles)</div>
+                        <div class="question-description">
+                            <span>Inspect forearm and calf muscles. Are they loose, flabby or lacking firm tone (lax)?</span>
+                            <span class="question-ref">Ref: Charaka Vimana 8/97, Sushruta Sharira 4/68. Confounder: sports/bodybuilders.</span>
+                        </div>
+                        <div class="question-image-box">
+                            <img src="images/page_23_img_1.png" alt="Loose lax skin and muscle tone">
+                            <img src="images/page_23_img_2.png" alt="Muscle laxity touch evaluation">
+                        </div>
+                        <div class="options-grid">
+                            <button class="option-btn" data-val="yes"><span class="option-circle"></span>Yes (Lax/Loose muscles)</button>
+                            <button class="option-btn" data-val="no"><span class="option-circle"></span>No (Firm/Well-toned muscles)</button>
+                        </div>
+                    </div>
+
+                    <!-- Section: Eyes -->
+                    <div class="trait-section-header">Eye Predictors</div>
+
+                    <div class="question-card" data-predictor="eye-size">
+                        <div class="question-text">12. Eye Size & Shape</div>
+                        <div class="question-description">
+                            <span>Observe the size of the eyes. Big eyes show a small white sclera visible at the bottom of the black cornea.</span>
+                            <span class="question-ref">Ref: AS Sharira Sthana 8/6, 12.</span>
+                        </div>
+                        <div class="question-image-box">
+                            <img src="images/page_24_img_1.png" alt="Small Eyes (Tanu lochana)">
+                            <img src="images/page_24_img_3.png" alt="Big Eyes (Vishalaksha)">
+                        </div>
+                        <div class="options-grid">
+                            <button class="option-btn" data-val="small"><span class="option-circle"></span>Tanu Lochana (Small / narrow eyes)</button>
+                            <button class="option-btn" data-val="big"><span class="option-circle"></span>Vishalaksha (Big / wide eyes)</button>
+                            <button class="option-btn" data-val="medium"><span class="option-circle"></span>Medium / Average size</button>
+                        </div>
+                    </div>
+
+                    <div class="question-card" data-predictor="eye-texture">
+                        <div class="question-text">13. Eye Texture (Dryness & Irritation)</div>
+                        <div class="question-description">
+                            <span>Does the participant often have roughness, dryness, irritation, eye fatigue, or frequent blinking?</span>
+                            <span class="question-ref">Ref: AH Sharira Sthana 3/88.</span>
+                        </div>
+                        <div class="options-grid">
+                            <button class="option-btn" data-val="yes"><span class="option-circle"></span>Yes (Dry / Rough eyes often)</button>
+                            <button class="option-btn" data-val="no"><span class="option-circle"></span>No / Moist and healthy</button>
+                        </div>
+                    </div>
+
+                    <div class="question-card" data-predictor="eye-color">
+                        <div class="question-text">14. Eye Sclera Colour</div>
+                        <div class="question-description">
+                            <span>Observe the color of the sclera (white portion of eyes) in natural light.</span>
+                            <span class="question-ref">Ref: AH 3/88, Sushruta 4/68.</span>
+                        </div>
+                        <div class="question-image-box">
+                            <img src="images/page_26_img_2.png" alt="Milky white / yellowish color reference">
+                            <img src="images/page_26_img_5.png" alt="Eye sclera colors mapping chart">
+                        </div>
+                        <div class="options-grid">
+                            <button class="option-btn" data-val="vata"><span class="option-circle"></span>Dhusaranetra (Dull white / dusky sclera)</button>
+                            <button class="option-btn" data-val="pitta"><span class="option-circle"></span>Tamranayana (Coppery / yellowish sclera)</button>
+                            <button class="option-btn" data-val="kapha"><span class="option-circle"></span>Raktantanetra / Shuklaksha (Milky white / reddish canthus)</button>
+                            <button class="option-btn" data-val="none"><span class="option-circle"></span>Normal White</button>
+                        </div>
+                    </div>
+
+                    <div class="question-card" data-predictor="eye-movement">
+                        <div class="question-text">15. Eye Movement (Chala Drishti)</div>
+                        <div class="question-description">
+                            <span>Observe gaze during conversation. Gaze is unsteady, wandering, or unable to hold attention.</span>
+                            <span class="question-ref">Ref: Sushruta Samhita Sharira Sthana 4/66.</span>
+                        </div>
+                        <div class="options-grid">
+                            <button class="option-btn" data-val="yes"><span class="option-circle"></span>Yes (Unsteady / wandering gaze)</button>
+                            <button class="option-btn" data-val="no"><span class="option-circle"></span>No (Steady / fixed gaze)</button>
+                        </div>
+                    </div>
+
+                    <div class="question-card" data-predictor="eye-reddening">
+                        <div class="question-text">16. Eye Reddening (Krodhena/Madyen/Raveshcha Ragam)</div>
+                        <div class="question-description">
+                            <span>Do eyes redden quickly during anger, after alcohol, or after exposure to sun?</span>
+                            <span class="question-ref">Ref: AH Sharira Sthana 3/88.</span>
+                        </div>
+                        <div class="options-grid">
+                            <button class="option-btn" data-val="yes"><span class="option-circle"></span>Yes (Redden easily)</button>
+                            <button class="option-btn" data-val="no"><span class="option-circle"></span>No / Normal</button>
+                        </div>
+                    </div>
+
+                    <div class="question-card" data-predictor="eye-lashes">
+                        <div class="question-text">17. Pakshma (Eyelashes)</div>
+                        <div class="question-description">
+                            <span>Evaluate density and texture of eyelashes.</span>
+                            <span class="question-ref">Ref: AH Sharira Sthana 3/94, 100.</span>
+                        </div>
+                        <div class="question-image-box">
+                            <img src="images/page_27_img_1.png" alt="Thin lashes example">
+                            <img src="images/page_27_img_3.png" alt="Dense lashes example">
+                        </div>
+                        <div class="options-grid">
+                            <button class="option-btn" data-val="pitta"><span class="option-circle"></span>Alpapakshma/Tanupakshma (Thin / few eyelashes)</button>
+                            <button class="option-btn" data-val="kapha"><span class="option-circle"></span>Pakshmalaksha (Thick / dense eyelashes)</button>
+                            <button class="option-btn" data-val="none"><span class="option-circle"></span>Normal / Medium eyelashes</button>
+                        </div>
+                    </div>
+
+                    <!-- Section: Hair -->
+                    <div class="trait-section-header">Hair & Scalp Predictors</div>
+
+                    <div class="question-card" data-predictor="hair-texture">
+                        <div class="question-text">18. Hair Quality & Texture (Kesha/Shmashru/Loma)</div>
+                        <div class="question-description">
+                            <span>To be examined without oil/gel. Touch and inspect scalp and body hair.</span>
+                            <span class="question-ref">Ref: Charaka Vimana 8/97, Sushruta 4/64.</span>
+                        </div>
+                        <div class="question-image-box">
+                            <img src="images/page_30_img_3.png" alt="Coarse straight hair">
+                            <img src="images/page_30_img_5.png" alt="Wavy soft hair">
+                        </div>
+                        <div class="options-grid">
+                            <button class="option-btn" data-val="vata"><span class="option-circle"></span>Parusha/Ruksha/Sphutitakesha (Hard, dry, or split ends)</button>
+                            <button class="option-btn" data-val="pitta"><span class="option-circle"></span>Mridu (Soft hair)</button>
+                            <button class="option-btn" data-val="kapha"><span class="option-circle"></span>Snigdha (Oily / unctuous hair)</button>
+                            <button class="option-btn" data-val="none"><span class="option-circle"></span>Normal / Balanced</button>
+                        </div>
+                    </div>
+
+                    <div class="question-card" data-predictor="hair-color">
+                        <div class="question-text">19. Hair Color</div>
+                        <div class="question-description">
+                            <span>Natural hair color. Rule out dye/henna by asking actual natural color.</span>
+                            <span class="question-ref">Ref: AH 3/85, 90.</span>
+                        </div>
+                        <div class="question-image-box">
+                            <img src="images/page_31_img_1.png" alt="Natural hair colors reference">
+                        </div>
+                        <div class="options-grid">
+                            <button class="option-btn" data-val="vata"><span class="option-circle"></span>Dhusara Kesha (Dusky / ash grey hair)</button>
+                            <button class="option-btn" data-val="pitta"><span class="option-circle"></span>Kapila Kesha (Reddish brown / auburn hair)</button>
+                            <button class="option-btn" data-val="kapha"><span class="option-circle"></span>Shyama Kesha (Black hair)</button>
+                            <button class="option-btn" data-val="none"><span class="option-circle"></span>Other colors</button>
+                        </div>
+                    </div>
+
+                    <div class="question-card" data-predictor="hair-curly">
+                        <div class="question-text">20. Kutila Kesha (Curly Hair)</div>
+                        <div class="question-description">
+                            <span>Check for natural curly or strongly wavy hair.</span>
+                            <span class="question-ref">Ref: Sushruta Samhita Sharira Sthana 4/73.</span>
+                        </div>
+                        <div class="question-image-box">
+                            <img src="images/page_30_img_1.png" alt="Curly Hair reference">
+                        </div>
+                        <div class="options-grid">
+                            <button class="option-btn" data-val="yes"><span class="option-circle"></span>Yes (Curly hair)</button>
+                            <button class="option-btn" data-val="no"><span class="option-circle"></span>No (Straight or wavy hair)</button>
+                        </div>
+                    </div>
+
+                    <div class="question-card" data-predictor="hair-loss">
+                        <div class="question-text">21. Sheeghra Khalitya / Akalapalita (Hair Fall & Greying)</div>
+                        <div class="question-description">
+                            <span>Significant loss (baldness) before 50 years, or greying (more than 20%) before 35 years.</span>
+                            <span class="question-ref">Ref: Sharangdhar Purva 6/64, Charaka Vimana 8/97.</span>
+                        </div>
+                        <div class="question-image-box">
+                            <img src="images/page_33_img_1.png" alt="Baldness Example">
+                            <img src="images/page_33_img_2.png" alt="Premature Greying Example">
+                        </div>
+                        <div class="options-grid">
+                            <button class="option-btn" data-val="yes"><span class="option-circle"></span>Yes (Early hair loss or premature greying)</button>
+                            <button class="option-btn" data-val="no"><span class="option-circle"></span>No / Normal aging</button>
+                        </div>
+                    </div>
+
+                    <div class="question-card" data-predictor="hair-density">
+                        <div class="question-text">22. Hair Quantity / Density</div>
+                        <div class="question-description">
+                            <span>Observe density of scalp hair and moustache (in males).</span>
+                            <span class="question-ref">Ref: Sharangdhar Samhita Purvakhand 6/63.</span>
+                        </div>
+                        <div class="options-grid">
+                            <button class="option-btn" data-val="scanty"><span class="option-circle"></span>Alpa Kesha / Shmashru (Scanty / thin hair)</button>
+                            <button class="option-btn" data-val="dense"><span class="option-circle"></span>Ghana Kesha (Dense / thick hair)</button>
+                            <button class="option-btn" data-val="medium"><span class="option-circle"></span>Medium density</button>
+                        </div>
+                    </div>
+
+                    <!-- Section: Teeth & Nails -->
+                    <div class="trait-section-header">Teeth & Nails</div>
+
+                    <div class="question-card" data-predictor="teeth-texture">
+                        <div class="question-text">23. Teeth Texture (Danta)</div>
+                        <div class="question-description">
+                            <span>Examine the texture of teeth. Do they appear dry (Ruksha) or rough (Parusha)?</span>
+                            <span class="question-ref">Ref: Charaka Samhita Vimana Sthana 8/98.</span>
+                        </div>
+                        <div class="question-image-box">
+                            <img src="images/page_34_img_4.png" alt="Teeth Texture example">
+                        </div>
+                        <div class="options-grid">
+                            <button class="option-btn" data-val="yes"><span class="option-circle"></span>Yes (Dry / Rough teeth)</button>
+                            <button class="option-btn" data-val="no"><span class="option-circle"></span>No (Smooth / Normal teeth)</button>
+                        </div>
+                    </div>
+
+                    <div class="question-card" data-predictor="teeth-size">
+                        <div class="question-text">24. Teeth Size</div>
+                        <div class="question-description">
+                            <span>Observe the size of teeth. Are they unusually small (Sukshma) or abnormally large (Atidanta)?</span>
+                            <span class="question-ref">Ref: Harita Samhita Pratham Sthana 5/18.</span>
+                        </div>
+                        <div class="question-image-box">
+                            <img src="images/page_35_img_1.png" alt="Small teeth example">
+                            <img src="images/page_35_img_3.png" alt="Big teeth example">
+                        </div>
+                        <div class="options-grid">
+                            <button class="option-btn" data-val="yes"><span class="option-circle"></span>Yes (Small or Big teeth)</button>
+                            <button class="option-btn" data-val="no"><span class="option-circle"></span>No (Average size teeth)</button>
+                        </div>
+                    </div>
+
+                    <div class="question-card" data-predictor="nails-size">
+                        <div class="question-text">25. Nails Size & Thickness (Nakha)</div>
+                        <div class="question-description">
+                            <span>Observe the size and thickness of nail beds.</span>
+                            <span class="question-ref">Ref: AS Sharira Sthana 8/6.</span>
+                        </div>
+                        <div class="question-image-box">
+                            <img src="images/page_36_img_1.png" alt="Small thin nail bed">
+                            <img src="images/page_36_img_4.png" alt="Long nail bed">
+                        </div>
+                        <div class="options-grid">
+                            <button class="option-btn" data-val="vata"><span class="option-circle"></span>Alpa / Tanu Nakha (Small / thin nails)</button>
+                            <button class="option-btn" data-val="kapha"><span class="option-circle"></span>Deergha Nakha (Long / large nail beds)</button>
+                            <button class="option-btn" data-val="none"><span class="option-circle"></span>Normal / Medium nails</button>
+                        </div>
+                    </div>
+
+                    <div class="question-card" data-predictor="nails-texture">
+                        <div class="question-text">26. Nails Texture</div>
+                        <div class="question-description">
+                            <span>Touch and observe nail beds. Are they dry (Ruksha) or rough (Parusha)?</span>
+                            <span class="question-ref">Ref: Charaka Samhita Vimana Sthana 8/98.</span>
+                        </div>
+                        <div class="question-image-box">
+                            <img src="images/page_37_img_1.png" alt="Dry / Rough nails example">
+                        </div>
+                        <div class="options-grid">
+                            <button class="option-btn" data-val="yes"><span class="option-circle"></span>Yes (Dry / Rough nails)</button>
+                            <button class="option-btn" data-val="no"><span class="option-circle"></span>No / Smooth</button>
+                        </div>
+                    </div>
+
+                    <div class="question-card" data-predictor="nails-color">
+                        <div class="question-text">27. Nails Color</div>
+                        <div class="question-description">
+                            <span>Examine the natural color of nail beds. Remove nail polish/henna beforehand.</span>
+                            <span class="question-ref">Ref: Sushruta Samhita Sharira Sthana 4/68.</span>
+                        </div>
+                        <div class="question-image-box">
+                            <img src="images/page_38_img_2.png" alt="Nail beds color example">
+                        </div>
+                        <div class="options-grid">
+                            <button class="option-btn" data-val="yes"><span class="option-circle"></span>Tamra Nakha (Coppery / pink-red nails)</button>
+                            <button class="option-btn" data-val="no"><span class="option-circle"></span>No (Normal pale white/pink nails)</button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="button-row">
+                    <button class="btn btn-secondary" id="btn-step-phys-back">Back</button>
+                    <button class="btn btn-primary" id="btn-step-phys-next">Next: Physiological Traits</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- View 5: Step 3 (Physiological Traits) -->
+        <div id="step-physiological-view" class="view-section">
+            <div class="card">
+                <div class="card-title-group">
+                    <h2 class="card-title">Physiological Traits & Functions</h2>
+                    <p class="card-subtitle">Functional predictors (7 Vata, 8 Pitta, 10 Kapha)</p>
+                </div>
+
+                <div class="questions-stack">
+                    
+                    <!-- Section: Gait & Cheshta -->
+                    <div class="trait-section-header">Gait & Activity</div>
+
+                    <div class="question-card" data-predictor="gait">
+                        <div class="question-text">1. Gati (Gait & Step Quality)</div>
+                        <div class="question-description">
+                            <span>Observe the participant walking. Druta/Chapala walk is very fast or quick initiation. Saara/Adhisthita is straight, consistent, and heel-strike first.</span>
+                            <span class="question-ref">Ref: Sushruta Sharira 4/65, Charaka Vimana 8/96.</span>
+                        </div>
+                        <div class="options-grid">
+                            <button class="option-btn" data-val="vata"><span class="option-circle"></span>Druta Gati / Chapala Gati (Swift, fast steps, quick start)</button>
+                            <button class="option-btn" data-val="kapha"><span class="option-circle"></span>Saara Gati / Adhisthita Gati (Steady, straight, firm heel-strike steps)</button>
+                            <button class="option-btn" data-val="none"><span class="option-circle"></span>None of the above / Medium</button>
+                        </div>
+                    </div>
+
+                    <div class="question-card" data-predictor="cheshta">
+                        <div class="question-text">2. Cheshta (Task Initiation Speed)</div>
+                        <div class="question-description">
+                            <span>When assigned a task, what is the usual tendency?</span>
+                            <span class="question-ref">Ref: Charaka Samhita Vimana Sthana 8/96, 98.</span>
+                        </div>
+                        <div class="options-grid">
+                            <button class="option-btn" data-val="vata"><span class="option-circle"></span>Often initiate immediately (Shighra-samarambha)</button>
+                            <button class="option-btn" data-val="kapha"><span class="option-circle"></span>Rarely / Sometimes initiate immediately (Ashighra-arambha)</button>
+                        </div>
+                    </div>
+
+                    <div class="question-card" data-predictor="voice">
+                        <div class="question-text">3. Swara (Voice Quality)</div>
+                        <div class="question-description">
+                            <span>Evaluate the natural tone, pitch and clarity of the participant's voice. Exclude cold/cough.</span>
+                            <span class="question-ref">Ref: Charaka Vimana 8/96, 98.</span>
+                        </div>
+                        <div class="options-grid">
+                            <button class="option-btn" data-val="vata"><span class="option-circle"></span>Feeble, dry, shattered, uncleared, stammering or hoarse voice</button>
+                            <button class="option-btn" data-val="kapha"><span class="option-circle"></span>Prasanna Swara / Gambhira (Clear, deep, resonant, pleasant voice)</button>
+                            <button class="option-btn" data-val="none"><span class="option-circle"></span>Normal / Medium pitch voice</button>
+                        </div>
+                    </div>
+
+                    <!-- Section: Appetite & Thirst -->
+                    <div class="trait-section-header">Metabolic: Appetite & Thirst</div>
+
+                    <div class="question-card" data-predictor="appetite-frequency">
+                        <div class="question-text">4. Appetite Frequency (Shighrakshuta)</div>
+                        <div class="question-description">
+                            <span>Select your usual meal and refreshment pattern in a typical day.</span>
+                            <span class="question-ref">Ref: Charaka Samhita Vimana Sthana 8/97.</span>
+                        </div>
+                        <div class="options-grid">
+                            <button class="option-btn" data-val="yes"><span class="option-circle"></span>2 Meals + 3 or more snacks OR 3 Meals + 2 or more snacks</button>
+                            <button class="option-btn" data-val="no"><span class="option-circle"></span>Less frequent meals / refreshments</button>
+                        </div>
+                    </div>
+
+                    <div class="question-card" data-predictor="appetite-quantity">
+                        <div class="question-text">5. Appetite Quantity (Food Intake Quantity)</div>
+                        <div class="question-description">
+                            <span>Estimate the total amount of food eaten daily. (Average: e.g. 6-10 chapattis, rice, dal, salad).</span>
+                            <span class="question-ref">Ref: AH Sharira Sthana 3/86, 101.</span>
+                        </div>
+                        <div class="options-grid">
+                            <button class="option-btn" data-val="kapha"><span class="option-circle"></span>Less than average (Alpakshut / Alpa-ashana)</button>
+                            <button class="option-btn" data-val="both"><span class="option-circle"></span>More than average (Bahubhuka / Analpashana)</button>
+                            <button class="option-btn" data-val="none"><span class="option-circle"></span>Average / Normal quantity</button>
+                        </div>
+                    </div>
+
+                    <div class="question-card" data-predictor="appetite-tolerance">
+                        <div class="question-text">6. Appetite Tolerance (Tolerating Hunger)</div>
+                        <div class="question-description">
+                            <span>Suppose you skip a meal, how do you tolerate it?</span>
+                            <span class="question-ref">Ref: AH Sharira Sthana 3/90, 96.</span>
+                        </div>
+                        <div class="options-grid">
+                            <button class="option-btn" data-val="kapha"><span class="option-circle"></span>Can tolerate hunger easily (Kshutsahishnu)</button>
+                            <button class="option-btn" data-val="pitta"><span class="option-circle"></span>Cannot tolerate hunger at all (Teekshna bubhuksha)</button>
+                            <button class="option-btn" data-val="none"><span class="option-circle"></span>It varies / Neutral</button>
+                        </div>
+                    </div>
+
+                    <div class="question-card" data-predictor="appetite-speed">
+                        <div class="question-text">7. Eating Speed (Ahara Gati)</div>
+                        <div class="question-description">
+                            <span>When eating with others, you usually finish:</span>
+                            <span class="question-ref">Ref: Charaka Samhita Vimana Sthana 8/96, 98.</span>
+                        </div>
+                        <div class="options-grid">
+                            <button class="option-btn" data-val="vata"><span class="option-circle"></span>First / Before friends and family (Laghu Ahara)</button>
+                            <button class="option-btn" data-val="kapha"><span class="option-circle"></span>Last / Slow eating speed (Manda Ahara)</button>
+                            <button class="option-btn" data-val="none"><span class="option-circle"></span>At par / with others</button>
+                        </div>
+                    </div>
+
+                    <div class="question-card" data-predictor="thirst-reaction">
+                        <div class="question-text">8. Thirst Intensity & Reaction (Teekshna Trishna)</div>
+                        <div class="question-description">
+                            <span>If you feel thirsty and water is not immediately available, how do you react?</span>
+                            <span class="question-ref">Ref: Charaka Samhita Vimana Sthana 8/97. Exclude: diabetes, salty food.</span>
+                        </div>
+                        <div class="options-grid">
+                            <button class="option-btn" data-val="yes"><span class="option-circle"></span>Get extremely restless and immediately search for water</button>
+                            <button class="option-btn" data-val="no"><span class="option-circle"></span>Can wait for sometime calmly</button>
+                        </div>
+                    </div>
+
+                    <div class="question-card" data-predictor="thirst-quantity">
+                        <div class="question-text">9. Thirst Quantity (Water/Fluid Volume)</div>
+                        <div class="question-description">
+                            <span>How much water / liquids do you drink per day approximately?</span>
+                            <span class="question-ref">Ref: Charaka Vimana 8/96, 97.</span>
+                        </div>
+                        <div class="options-grid">
+                            <button class="option-btn" data-val="pitta"><span class="option-circle"></span>High volume: > 2 liters per day (Prabhuta pana)</button>
+                            <button class="option-btn" data-val="kapha"><span class="option-circle"></span>Low volume: < 1 liter per day (Alpa pana)</button>
+                            <button class="option-btn" data-val="none"><span class="option-circle"></span>Medium volume: 1 - 2 liters per day</button>
+                        </div>
+                    </div>
+
+                    <div class="question-card" data-predictor="thirst-frequency">
+                        <div class="question-text">10. Thirst Frequency (Shighra Pipasa)</div>
+                        <div class="question-description">
+                            <span>How frequently do you drink water/fluids in a typical day?</span>
+                            <span class="question-ref">Ref: AS Sharira Sthana 8/9.</span>
+                        </div>
+                        <div class="options-grid">
+                            <button class="option-btn" data-val="pitta"><span class="option-circle"></span>High: > 7 times a day (Shighra pipasa)</button>
+                            <button class="option-btn" data-val="kapha"><span class="option-circle"></span>Low: ≤ 4 times a day (Alpa trishna)</button>
+                            <button class="option-btn" data-val="none"><span class="option-circle"></span>Medium: 5 - 7 times a day</button>
+                        </div>
+                    </div>
+
+                    <!-- Section: Bowel & Sweat -->
+                    <div class="trait-section-header">Excretion: Stool & Sweat</div>
+
+                    <div class="question-card" data-predictor="stool">
+                        <div class="question-text">11. Bowel Habits (Prabhuta-Shrista Purisha)</div>
+                        <div class="question-description">
+                            <span>Is bowel evacuation usually easy, satisfactory, quick, and of adequate quantity? Exclude IBS.</span>
+                            <span class="question-ref">Ref: Charaka Samhita Vimana Sthana 8/97.</span>
+                        </div>
+                        <div class="options-grid">
+                            <button class="option-btn" data-val="yes"><span class="option-circle"></span>Yes (satisfactory, quick and easy stool passed daily)</button>
+                            <button class="option-btn" data-val="no"><span class="option-circle"></span>No (Suffer from constipation or hard stools occasionally)</button>
+                        </div>
+                    </div>
+
+                    <div class="question-card" data-predictor="sweat-quantity">
+                        <div class="question-text">12. Sweat Quantity (Sweda Matra)</div>
+                        <div class="question-description">
+                            <span>How much do you sweat on exposure to sun, exercise or normal physical activity?</span>
+                            <span class="question-ref">Ref: Charaka Samhita Vimana Sthana 8/96, 97.</span>
+                        </div>
+                        <div class="options-grid">
+                            <button class="option-btn" data-val="pitta"><span class="option-circle"></span>Profuse sweating (Prabhuta-srishta sweda)</button>
+                            <button class="option-btn" data-val="kapha"><span class="option-circle"></span>Scanty sweating (Alpa sweda)</button>
+                            <button class="option-btn" data-val="none"><span class="option-circle"></span>Medium / Average sweating</button>
+                        </div>
+                    </div>
+
+                    <div class="question-card" data-predictor="sweat-odour">
+                        <div class="question-text">13. Sweda Gandha (Sweat Odour)</div>
+                        <div class="question-description">
+                            <span>Do you have strong body odour, or has anyone commented on your sweat odour?</span>
+                            <span class="question-ref">Ref: Charaka Vimana 8/97, Sushruta Sharira 4/68.</span>
+                        </div>
+                        <div class="options-grid">
+                            <button class="option-btn" data-val="yes"><span class="option-circle"></span>Yes (Strong / putrid odour especially axilla/scalp)</button>
+                            <button class="option-btn" data-val="no"><span class="option-circle"></span>No / Mild odour</button>
+                        </div>
+                    </div>
+
+                    <!-- Section: Sleep & Dreams -->
+                    <div class="trait-section-header">Sleep & Dreams</div>
+
+                    <div class="question-card" data-predictor="sleep-awakening">
+                        <div class="question-text">14. Sleep Awakening (Jagaruka)</div>
+                        <div class="question-description">
+                            <span>Are you easily awakened by minor noises, showing light sleep?</span>
+                            <span class="question-ref">Ref: Charaka Samhita Vimana Sthana 8/98.</span>
+                        </div>
+                        <div class="options-grid">
+                            <button class="option-btn" data-val="yes"><span class="option-circle"></span>Often (Awake easily, light sleeper)</button>
+                            <button class="option-btn" data-val="no"><span class="option-circle"></span>Rarely / Sometimes</button>
+                        </div>
+                    </div>
+
+                    <div class="question-card" data-predictor="sleep-hours">
+                        <div class="question-text">15. Sleep Duration (Alpa Nidra)</div>
+                        <div class="question-description">
+                            <span>How many hours do you usually sleep in a 24-hour cycle?</span>
+                            <span class="question-ref">Ref: AH Sharira Sthana 3/86.</span>
+                        </div>
+                        <div class="options-grid">
+                            <button class="option-btn" data-val="yes"><span class="option-circle"></span>Less than 6 hours</button>
+                            <button class="option-btn" data-val="no"><span class="option-circle"></span>6 hours or more</button>
+                        </div>
+                    </div>
+
+                    <div class="question-card" data-predictor="sleep-liking">
+                        <div class="question-text">16. Sleep Preference (Nidrapriya)</div>
+                        <div class="question-description">
+                            <span>Do you love to sleep, taking naps in free time if given a chance?</span>
+                            <span class="question-ref">Ref: Harita Samhita Pratham Sthana 5/21.</span>
+                        </div>
+                        <div class="options-grid">
+                            <button class="option-btn" data-val="yes"><span class="option-circle"></span>Often (Nidrapriya - loves sleeping)</button>
+                            <button class="option-btn" data-val="no"><span class="option-circle"></span>Rarely / Sometimes</button>
+                        </div>
+                    </div>
+
+                    <div class="question-card" data-predictor="sleep-dreams">
+                        <div class="question-text">17. Dream Themes (Swapna)</div>
+                        <div class="question-description">
+                            <span>Do you often see and remember dreams? Select the most frequent theme you see.</span>
+                            <span class="question-ref">Ref: Sushruta Samhita Sharira Sthana 4/65, 69, 73.</span>
+                        </div>
+                        <div class="options-grid" style="grid-template-columns: 1fr;">
+                            <button class="option-btn" data-val="vata"><span class="option-circle"></span>Sky, flying, mountains, dry trees, dried water bodies</button>
+                            <button class="option-btn" data-val="pitta"><span class="option-circle"></span>Fire, lightning, gold, red flowers, meteors, heat</button>
+                            <button class="option-btn" data-val="kapha"><span class="option-circle"></span>Water bodies, lakes, rivers, lotuses, ducks, swans</button>
+                            <button class="option-btn" data-val="none"><span class="option-circle"></span>Do not remember dreams / Others</button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="button-row">
+                    <button class="btn btn-secondary" id="btn-step-physio-back">Back</button>
+                    <button class="btn btn-primary" id="btn-step-physio-next">Next: Cognitive & Mental Tests</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- View 6: Step 4 (Psychological & Intelligence) -->
+        <div id="step-psychological-view" class="view-section">
+            <div class="card">
+                <div class="card-title-group">
+                    <h2 class="card-title">Cognitive & Psychological Tests</h2>
+                    <p class="card-subtitle">Tests for memory, comprehension, intelligence, and temperament</p>
+                </div>
+
+                <div class="questions-stack">
+                    
+                    <div class="trait-section-header">Basic Traits</div>
+
+                    <div class="question-card" data-predictor="indecisiveness">
+                        <div class="question-text">1. Indecisiveness (Anavasthita Atma)</div>
+                        <div class="question-description">
+                            <span>After taking a decision, how often do you feel the need to change your decisions?</span>
+                            <span class="question-ref">Ref: Sushruta Samhita ShariraSthana 4/65.</span>
+                        </div>
+                        <div class="options-grid">
+                            <button class="option-btn" data-val="yes"><span class="option-circle"></span>Often (Avyavasthita mati - changes decisions frequently)</button>
+                            <button class="option-btn" data-val="no"><span class="option-circle"></span>Rarely / Sometimes</button>
+                        </div>
+                    </div>
+
+                    <div class="question-card" data-predictor="friendship">
+                        <div class="question-text">2. Friendship Duration (Maitri / Sauhrida)</div>
+                        <div class="question-description">
+                            <span>Do your relations with friends, relatives and neighbors last for a long time?</span>
+                            <span class="question-ref">Ref: Sushruta Sharira 4/65, 75, AH 3/102.</span>
+                        </div>
+                        <div class="options-grid">
+                            <button class="option-btn" data-val="vata"><span class="option-circle"></span>Rarely (Fickle relations / Manda mitra / Adridha sauhrida)</button>
+                            <button class="option-btn" data-val="kapha"><span class="option-circle"></span>Often (Stable relations / Sthira sauhrida)</button>
+                            <button class="option-btn" data-val="none"><span class="option-circle"></span>Sometimes</button>
+                        </div>
+                    </div>
+
+                    <!-- Cognitive Test 1: Memory Registration -->
+                    <div class="trait-section-header">Smriti (Memory Retention Test)</div>
+                    <div class="test-layout">
+                        <p style="font-size:0.9rem; margin-bottom:12px;"><strong>Instructions:</strong> Read and memorize the following words. You will be asked to recall them at the end of this section to measure your delayed memory score.</p>
+                        
+                        <div class="memory-grid">
+                            <div class="memory-box">
+                                <div class="memory-box-title">5 Single Words</div>
+                                <div class="memory-words-list">
+                                    <div class="memory-item"><span>1.</span> Mango (आम)</div>
+                                    <div class="memory-item"><span>2.</span> Night (रात)</div>
+                                    <div class="memory-item"><span>3.</span> Key (चाभी)</div>
+                                    <div class="memory-item"><span>4.</span> Car (गाड़ी)</div>
+                                    <div class="memory-item"><span>5.</span> House (घर)</div>
+                                </div>
+                            </div>
+                            <div class="memory-box">
+                                <div class="memory-box-title">5 Paired Associations</div>
+                                <div class="memory-words-list">
+                                    <div class="memory-item"><span>1.</span> Day - Night (दिन - रात)</div>
+                                    <div class="memory-item"><span>2.</span> Sister - Brother (बहन - भाई)</div>
+                                    <div class="memory-item"><span>3.</span> Joy - Sorrow (सुख - दुःख)</div>
+                                    <div class="memory-item"><span>4.</span> Up - Down (ऊपर - नीचे)</div>
+                                    <div class="memory-item"><span>5.</span> Black - White (काला - सफेद)</div>
+                                </div>
+                            </div>
+                        </div>
+                        <p style="font-size:0.8rem; color:var(--primary); margin-top:12px; font-weight:600;">✓ Words registered. Keep them in mind. The recall test is coming up.</p>
+                    </div>
+
+                    <!-- Cognitive Test 2: Grahya Shakti (Comprehension) -->
+                    <div class="trait-section-header">Grahya Shakti (Comprehension Test)</div>
+                    <div class="test-layout" id="comp-test-container">
+                        <div class="lang-selector-box" id="comp-lang-selector" style="display:flex; justify-content:flex-end; gap:8px; margin-bottom:12px;">
+                            <button type="button" class="btn btn-secondary btn-sm selected" id="btn-lang-en" style="padding:4px 8px; font-size:0.75rem;">English</button>
+                            <button type="button" class="btn btn-secondary btn-sm" id="btn-lang-hi" style="padding:4px 8px; font-size:0.75rem;">हिन्दी</button>
+                        </div>
+                        <div id="comp-intro-screen">
+                            <p id="comp-instructions-text" style="font-size:0.9rem; margin-bottom:16px;">This test measures immediate grasping speed and comprehension. You will read a short story. You have up to 2 minutes. Once you click "Show Questions" or the timer runs out, the story will hide and you will answer 10 questions. (60% or more correct is Shrutagrahi).</p>
+                            <button class="btn btn-primary" id="btn-start-comp-test">Start Reading</button>
+                        </div>
+                        
+                        <div id="comp-reading-screen" style="display:none;">
+                            <div class="test-timer">
+                                <span id="comp-timer-prefix">⏱️ Reading Time Left:</span> <span id="comp-timer">120</span>s
+                            </div>
+                            <div class="story-text">
+                                <!-- Rendered dynamically by script -->
+                            </div>
+                            <button class="btn btn-primary" id="btn-finish-reading">Done: Show Questions</button>
+                        </div>
+
+                        <div id="comp-quiz-screen" style="display:none;">
+                            <p style="font-size:0.9rem; color:var(--secondary); margin-bottom:16px; font-weight:600;">⚠️ The story is now hidden. Answer these 10 questions to test your comprehension:</p>
+                            
+                            <div class="story-test-questions" id="quiz-questions-box" style="display:flex;">
+                                <!-- Rendered dynamically by script -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cognitive Test 3: Medha (Intelligence & Attention) -->
+                    <div class="trait-section-header">Medha & Buddhi (Intelligence Tests)</div>
+                    
+                    <!-- Puzzle A: Spot Differences -->
+                    <div class="puzzle-card" data-puzzle="differences-spot">
+                        <div class="puzzle-card-header">
+                            <strong>Test 1: Spot the Differences (Attention/Nipunamati)</strong>
+                            <span class="badge badge-primary">Time: 3 Min</span>
+                        </div>
+                        <p style="font-size:0.85rem; color:var(--text-secondary); margin-bottom:12px;">Compare the two drawings from the manual. Spot as many differences as you can.</p>
+                        
+                        <div class="puzzle-image-area" style="max-width:100%;">
+                            <img src="images/page_53_img_1.png" alt="Differences spotting reference drawing A & B" style="max-height:220px; object-fit:contain;">
+                        </div>
+                        
+                        <div class="form-group" style="margin-top:12px;">
+                            <label>Differences spotted:</label>
+                            <div class="options-grid">
+                                <button class="option-btn" data-val="wrong"><span class="option-circle"></span>Fewer than 12 differences spotted</button>
+                                <button class="option-btn" data-val="correct" id="diff-correct-btn"><span class="option-circle"></span>12 or more differences spotted</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Puzzle B: Pattern Completion -->
+                    <div class="puzzle-card" data-puzzle="series">
+                        <div class="puzzle-card-header">
+                            <strong>Test 2: Series Completion (Logical/Medhavi)</strong>
+                            <span class="badge badge-primary">Time: 3 Min</span>
+                        </div>
+                        <p style="font-size:0.85rem; color:var(--text-secondary);">Establish the relationship between figures 1, 2, and 3. Select which figure from A, B, C, D, E completes the series.</p>
+                        
+                        <div class="puzzle-image-area">
+                            <!-- SVG drawing representing problem figures -->
+                            <svg class="puzzle-svg" viewBox="0 0 400 150">
+                                <rect width="400" height="150" fill="#ffffff"/>
+                                <!-- Fig 1: Circle with dot in center -->
+                                <rect x="10" y="20" width="80" height="80" fill="none" stroke="#000000" stroke-width="2"/>
+                                <circle cx="50" cy="60" r="20" fill="none" stroke="#000000" stroke-width="2"/>
+                                <circle cx="50" cy="60" r="3" fill="#000000"/>
+                                <text x="45" y="120" fill="#000000" font-size="14">Fig 1</text>
+                                
+                                <!-- Fig 2: Circle with dot + cross -->
+                                <rect x="110" y="20" width="80" height="80" fill="none" stroke="#000000" stroke-width="2"/>
+                                <circle cx="150" cy="60" r="20" fill="none" stroke="#000000" stroke-width="2"/>
+                                <circle cx="150" cy="60" r="3" fill="#000000"/>
+                                <line x1="130" y1="60" x2="170" y2="60" stroke="#000000" stroke-width="1.5"/>
+                                <line x1="150" y1="40" x2="150" y2="80" stroke="#000000" stroke-width="1.5"/>
+                                <text x="145" y="120" fill="#000000" font-size="14">Fig 2</text>
+                                
+                                <!-- Fig 3: Circle with dot, cross + diagonal lines -->
+                                <rect x="210" y="20" width="80" height="80" fill="none" stroke="#000000" stroke-width="2"/>
+                                <circle cx="250" cy="60" r="20" fill="none" stroke="#000000" stroke-width="2"/>
+                                <circle cx="250" cy="60" r="3" fill="#000000"/>
+                                <line x1="230" y1="60" x2="270" y2="60" stroke="#000000" stroke-width="1.5"/>
+                                <line x1="250" y1="40" x2="250" y2="80" stroke="#000000" stroke-width="1.5"/>
+                                <line x1="236" y1="46" x2="264" y2="74" stroke="#000000" stroke-width="1.5"/>
+                                <line x1="236" y1="74" x2="264" y2="46" stroke="#000000" stroke-width="1.5"/>
+                                <text x="245" y="120" fill="#000000" font-size="14">Fig 3</text>
+
+                                <!-- Target box -->
+                                <rect x="310" y="20" width="80" height="80" fill="none" stroke="#15803d" stroke-width="2" stroke-dasharray="4"/>
+                                <text x="345" y="65" fill="#15803d" font-size="24" font-weight="bold">?</text>
+                                <text x="345" y="120" fill="#000000" font-size="14">Target</text>
+                            </svg>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Identify the completing option:</label>
+                            <div class="options-grid">
+                                <button class="option-btn" data-val="wrong1"><span class="option-circle"></span>A. Simple Circle</button>
+                                <button class="option-btn" data-val="wrong2"><span class="option-circle"></span>B. Circle with cross only</button>
+                                <button class="option-btn" data-val="correct"><span class="option-circle"></span>C. Circle with dot, cross, diagonal lines, and outer ring dots</button>
+                                <button class="option-btn" data-val="wrong3"><span class="option-circle"></span>D. Empty Square</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Puzzle C: Shape Counting -->
+                    <div class="puzzle-card" data-puzzle="shapes">
+                        <div class="puzzle-card-header">
+                            <strong>Test 3: Four-Sided Shape Counting (Buddhiyukta)</strong>
+                            <span class="badge badge-primary">Time: 3 Min</span>
+                        </div>
+                        <p style="font-size:0.85rem; color:var(--text-secondary); margin-bottom:12px;">Count the total number of four-sided shapes present in this diagram.</p>
+                        
+                        <div class="puzzle-image-area">
+                            <img src="images/page_57_img_1.png" alt="Four-sided shapes counting test grid" style="max-height:220px; object-fit:contain;">
+                        </div>
+
+                        <div class="form-group" style="margin-top:12px;">
+                            <label for="input-triangle-count">Enter the number of four-sided shapes you found:</label>
+                            <input type="number" id="input-triangle-count" placeholder="Type count here" min="0">
+                        </div>
+                    </div>
+
+                    <!-- Cognitive Test 4: Memory Recall -->
+                    <div class="trait-section-header" id="memory-recall-header">Smriti Recall (Delayed Memory Test)</div>
+                    <div class="test-layout" id="memory-recall-container">
+                        <p style="font-size:0.9rem; margin-bottom:12px;"><strong>Recall Phase:</strong> Select the words and paired associations that were presented to you at the beginning of this section. (Do not scroll up to look!).</p>
+                        
+                        <div style="margin-bottom:16px;">
+                            <label>Select the Single Words you remember:</label>
+                            <div class="options-grid" id="memory-single-options">
+                                <!-- Choices dynamically added by script -->
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label>Select the Paired Associations you remember:</label>
+                            <div class="options-grid" id="memory-pair-options">
+                                <!-- Choices dynamically added by script -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Temperament: Krodha -->
+                    <div class="trait-section-header">Temperament & Swabhava</div>
+
+                    <div class="question-card" data-predictor="krodha">
+                        <div class="question-text">4. Temperament / Anger (Krodha)</div>
+                        <div class="question-description">
+                            <span>What is your usual reaction if someone breaks a queue, and what is your family's opinion of your anger?</span>
+                            <span class="question-ref">Ref: Sushruta Samhita ShariraSthana 4/68, 73.</span>
+                        </div>
+                        <div class="options-grid" style="grid-template-columns: 1fr;">
+                            <button class="option-btn" data-val="krodhi"><span class="option-circle"></span>Start argument / shout, and family considers me short-tempered (Krodhi)</button>
+                            <button class="option-btn" data-val="kshipra"><span class="option-circle"></span>Get angry quickly and later calm down quickly (Kshipra kopa-kshipra prasaada)</button>
+                            <button class="option-btn" data-val="alpa"><span class="option-circle"></span>Ignore it, remain calm, and family considers me calm/patient (Alpa krodha)</button>
+                            <button class="option-btn" data-val="none"><span class="option-circle"></span>None of the above / Average</button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="button-row">
+                    <button class="btn btn-secondary" id="btn-step-psych-back">Back</button>
+                    <button class="btn btn-primary" id="btn-step-psych-next">Next: Behavioral Traits</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- View 7: Step 5 (Behavioral Traits) -->
+        <div id="step-behavioral-view" class="view-section">
+            <div class="card">
+                <div class="card-title-group">
+                    <h2 class="card-title">Behavioral Traits</h2>
+                    <p class="card-subtitle">Social and behavioral predictors (2 Vata, 3 Pitta, 3 Kapha)</p>
+                </div>
+
+                <div class="questions-stack">
+                    
+                    <div class="trait-section-header">Oration & Nature of Speech</div>
+
+                    <div class="question-card" data-predictor="speech-nature">
+                        <div class="question-text">1. Way of Talking / Nature of Speech</div>
+                        <div class="question-description">
+                            <span>Nature of speech evaluated during the interview.</span>
+                            <span class="question-ref">Ref: Sharangdhar Purvakhand 6/63, Bhela Samhita Viman Sthana 4/24.</span>
+                        </div>
+                        <div class="options-grid">
+                            <button class="option-btn" data-val="vata"><span class="option-circle"></span>Talkative / irrelevant talk (Vachaala)</button>
+                            <button class="option-btn" data-val="kapha"><span class="option-circle"></span>Speaks limited (Mitvak) or soft-spoken (Vadaanya)</button>
+                            <button class="option-btn" data-val="none"><span class="option-circle"></span>Medium / Average speech volume</button>
+                        </div>
+                    </div>
+
+                    <div class="question-card" data-predictor="orator-dominant">
+                        <div class="question-text">2. Profound Orator & Dominant Speaker</div>
+                        <div class="question-description">
+                            <span>Can talk effectively at length on choice topics and/or dominates conversations during debates.</span>
+                            <span class="question-ref">Ref: Bhavaprakash Purva 4/56, Sushruta Sharira 4/69. Note: Max 1 mark to Pitta.</span>
+                        </div>
+                        <div class="options-grid">
+                            <button class="option-btn" data-val="yes"><span class="option-circle"></span>Often (Can speak profoundly (Pragalbha) and/or dominates debate)</button>
+                            <button class="option-btn" data-val="no"><span class="option-circle"></span>Rarely / Sometimes</button>
+                        </div>
+                    </div>
+
+                    <div class="trait-section-header">Bravery, Enmity & Politeness</div>
+
+                    <div class="question-card" data-predictor="valour">
+                        <div class="question-text">3. Braveness & Valour (Teekshna Parakrama / Shoora)</div>
+                        <div class="question-description">
+                            <span>Often stand up for values despite criticism, and face extreme adversity bravely until the goal is achieved.</span>
+                            <span class="question-ref">Ref: Charaka Samhita Vimana Sthana 8/97, Sushruta Sharira 4/70.</span>
+                        </div>
+                        <div class="options-grid">
+                            <button class="option-btn" data-val="yes"><span class="option-circle"></span>Yes (Face adversity bravely AND stand for values)</button>
+                            <button class="option-btn" data-val="no"><span class="option-circle"></span>No / Sometime panic or run away</button>
+                        </div>
+                    </div>
+
+                    <div class="question-card" data-predictor="likings">
+                        <div class="question-text">4. Temperature Likings (Sheetabhilashi vs. Ushna Annapanakansha)</div>
+                        <div class="question-description">
+                            <span>What type of food/drinks do you prefer in moderate seasons?</span>
+                            <span class="question-ref">Ref: AH Sharira Sthana 3/92, 100.</span>
+                        </div>
+                        <div class="options-grid">
+                            <button class="option-btn" data-val="pitta"><span class="option-circle"></span>Likes cold food and climates (Sheetabhilashi)</button>
+                            <button class="option-btn" data-val="vata"><span class="option-circle"></span>Desirous of hot food and drinks (Ushna annapanakansha)</button>
+                            <button class="option-btn" data-val="none"><span class="option-circle"></span>No specific preference</button>
+                        </div>
+                    </div>
+
+                    <div class="question-card" data-predictor="enmity">
+                        <div class="question-text">5. Strong Enmity (Dridhavaira)</div>
+                        <div class="question-description">
+                            <span>Have differences with someone and never patched up because you rejected their attempt or never wanted to.</span>
+                            <span class="question-ref">Ref: Sushruta Sharira 4/72, AH 3/98.</span>
+                        </div>
+                        <div class="options-grid">
+                            <button class="option-btn" data-val="yes"><span class="option-circle"></span>Yes (Keep strong enmity, did not accept patch up)</button>
+                            <button class="option-btn" data-val="no"><span class="option-circle"></span>No (Patch up easily or do not keep enmity)</button>
+                        </div>
+                    </div>
+
+                    <div class="question-card" data-predictor="politeness">
+                        <div class="question-text">6. Politeness & Humility (Vineeta)</div>
+                        <div class="question-description">
+                            <span>Remain polite even in stressful conditions, and described by others as soft/submissive.</span>
+                            <span class="question-ref">Ref: AH Sharira Sthana 3/99.</span>
+                        </div>
+                        <div class="options-grid">
+                            <button class="option-btn" data-val="yes"><span class="option-circle"></span>Yes (Polite in stress OR described as soft & submissive)</button>
+                            <button class="option-btn" data-val="no"><span class="option-circle"></span>No / Sometimes rude or aggressive</button>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="button-row">
+                    <button class="btn btn-secondary" id="btn-step-behav-back">Back</button>
+                    <button class="btn btn-primary" id="btn-step-behav-next">Calculate Prakriti Diagnosis</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- View 8: Results View -->
+        <div id="results-view" class="view-section">
+            <div class="card">
+                <div class="results-header-box">
+                    <span class="badge badge-secondary" id="results-participant-name">Participant: Krish</span>
+                    <h2>Your Prakriti Constitution is</h2>
+                    <div class="diagnosis-pill" id="diagnosis-text">VATA - PITTA</div>
+                    <p class="diagnosis-desc" id="diagnosis-description">
+                        Your constitution shows a dominance of Vata and Pitta doshas. This is a Sansargaja (Dvandvaja) Prakriti, representing a mix of active, mobile, and heat-oriented characteristics.
+                    </p>
+                </div>
+
+                <div class="results-grid">
+                    <!-- SVG Chart column -->
+                    <div class="chart-box">
+                        <svg width="220" height="220" viewBox="0 0 200 200" id="results-donut-chart">
+                            <!-- Rendered dynamically by script -->
+                        </svg>
+                        <div style="margin-top:16px; display:flex; gap:12px; font-size:0.8rem; justify-content:center;">
+                            <span style="display:flex; align-items:center; gap:4px;"><span class="dot-vata">●</span> Vata</span>
+                            <span style="display:flex; align-items:center; gap:4px;"><span class="dot-pitta">●</span> Pitta</span>
+                            <span style="display:flex; align-items:center; gap:4px;"><span class="dot-kapha">●</span> Kapha</span>
+                        </div>
+                    </div>
+
+                    <!-- Scores progress bars column -->
+                    <div class="prakriti-scores-list">
+                        
+                        <div class="score-bar-container">
+                            <div class="score-bar-header">
+                                <span class="score-bar-name"><span class="dot-vata">●</span> Vata Dosha</span>
+                                <span class="score-bar-percent" id="score-vata-pct">35.4%</span>
+                            </div>
+                            <div class="score-bar-bg">
+                                <div class="score-bar-fill vata" id="score-vata-fill" style="width: 35.4%;"></div>
+                            </div>
+                            <div class="score-raw-meta">
+                                <span>Weighted: <span id="score-vata-weighted">11.2</span></span>
+                                <span>Raw Score: <span id="score-vata-raw">11</span>/31</span>
+                            </div>
+                        </div>
+
+                        <div class="score-bar-container">
+                            <div class="score-bar-header">
+                                <span class="score-bar-name"><span class="dot-pitta">●</span> Pitta Dosha</span>
+                                <span class="score-bar-percent" id="score-pitta-pct">42.1%</span>
+                            </div>
+                            <div class="score-bar-bg">
+                                <div class="score-bar-fill pitta" id="score-pitta-fill" style="width: 42.1%;"></div>
+                            </div>
+                            <div class="score-raw-meta">
+                                <span>Weighted: <span id="score-pitta-weighted">13.2</span></span>
+                                <span>Raw Score: <span id="score-pitta-raw">12</span>/29</span>
+                            </div>
+                        </div>
+
+                        <div class="score-bar-container">
+                            <div class="score-bar-header">
+                                <span class="score-bar-name"><span class="dot-kapha">●</span> Kapha Dosha</span>
+                                <span class="score-bar-percent" id="score-kapha-pct">22.5%</span>
+                            </div>
+                            <div class="score-bar-bg">
+                                <div class="score-bar-fill kapha" id="score-kapha-fill" style="width: 22.5%;"></div>
+                            </div>
+                            <div class="score-raw-meta">
+                                <span>Weighted: <span id="score-kapha-weighted">7.1</span></span>
+                                <span>Raw Score: <span id="score-kapha-raw">7</span>/32</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Section: Recommendations Accordion -->
+                <div class="recs-box">
+                    <h3>Ayurvedic Recommendations</h3>
+                    <p style="font-size:0.9rem; color:var(--text-secondary); margin-bottom:16px;">Guidelines for maintaining health and balance according to your specific Prakriti constitution.</p>
+                    
+                    <div id="recs-accordion-container">
+                        <!-- Rendered dynamically by script -->
+                    </div>
+                </div>
+
+                <div class="button-row" style="justify-content: center;">
+                    <button class="btn btn-primary" id="btn-restart-assessment">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+                        Retake Assessment
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
